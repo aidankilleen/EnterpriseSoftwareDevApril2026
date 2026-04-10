@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: spring-boot-web-investigation
+  datasource:
+    url: jdbc:sqlite:C:\\work\\training\\java\\users.db
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect

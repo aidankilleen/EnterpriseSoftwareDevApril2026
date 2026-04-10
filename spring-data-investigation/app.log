@@ -1,0 +1,52 @@
+2026-04-07T12:22:18.102+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] i.p.s.SpringDataInvestigationApplication : Starting SpringDataInvestigationApplication using Java 21.0.8 with PID 17740 (C:\Users\aidan\IdeaProjects\spring-data-investigation\build\classes\java\main started by aidan in C:\Users\aidan\IdeaProjects\spring-data-investigation)
+2026-04-07T12:22:18.105+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] i.p.s.SpringDataInvestigationApplication : The following 1 profile is active: "dev"
+2026-04-07T12:22:18.822+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-07T12:22:18.907+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 70 ms. Found 1 JPA repository interface.
+2026-04-07T12:22:19.374+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-07T12:22:19.456+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.47.Final
+2026-04-07T12:22:19.517+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-04-07T12:22:19.976+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-07T12:22:20.022+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-07T12:22:20.229+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@55f4887d
+2026-04-07T12:22:20.233+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-07T12:22:20.310+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 3.49.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-07T12:22:21.491+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-07T12:22:21.543+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-07T12:22:21.953+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] i.p.s.SpringDataInvestigationApplication : Started SpringDataInvestigationApplication in 4.663 seconds (process running for 5.964)
+2026-04-07T12:22:21.957+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [main] i.p.s.SpringDataInvestigationApplication : *****Application Starting:DEV:Spring JPA Investigation
+2026-04-07T12:22:22.282+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-07T12:22:22.285+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-07T12:22:22.288+01:00  INFO 17740 --- [DEV:Spring JPA Investigation] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-04-07T12:28:35.098+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] i.p.s.SpringDataInvestigationApplication : Starting SpringDataInvestigationApplication using Java 21.0.8 with PID 23952 (C:\Users\aidan\IdeaProjects\spring-data-investigation\build\classes\java\main started by aidan in C:\Users\aidan\IdeaProjects\spring-data-investigation)
+2026-04-07T12:28:35.100+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] i.p.s.SpringDataInvestigationApplication : The following 1 profile is active: "dev"
+2026-04-07T12:28:35.825+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-07T12:28:35.924+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83 ms. Found 1 JPA repository interface.
+2026-04-07T12:28:36.553+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-07T12:28:36.655+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.47.Final
+2026-04-07T12:28:36.727+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-04-07T12:28:37.317+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-07T12:28:37.380+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-07T12:28:37.617+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@11787b64
+2026-04-07T12:28:37.621+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-07T12:28:37.708+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 3.49.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-04-07T12:28:39.348+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-07T12:28:39.432+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-07T12:28:39.916+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] i.p.s.SpringDataInvestigationApplication : Started SpringDataInvestigationApplication in 5.697 seconds (process running for 7.262)
+2026-04-07T12:28:39.921+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [main] i.p.s.SpringDataInvestigationApplication : *****Application Starting:DEV:Spring JPA Investigation
+2026-04-07T12:28:40.350+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-07T12:28:40.366+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-07T12:28:40.409+01:00  INFO 23952 --- [DEV:Spring JPA Investigation] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
