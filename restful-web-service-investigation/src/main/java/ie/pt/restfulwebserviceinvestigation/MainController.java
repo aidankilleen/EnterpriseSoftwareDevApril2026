@@ -31,4 +31,12 @@ public class MainController {
     public String contact() {
         return "contact";
     }
+
+    @GetMapping("users")
+    public String users(Model model) {
+
+        List<User> users = userRepository.findAll();
+        model.addAttribute("users", users);
+        return "users";
+    }
 }

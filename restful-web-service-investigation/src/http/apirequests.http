@@ -1,0 +1,44 @@
+### GET request to example server
+GET http://localhost:8080/api/users
+
+###
+GET http://localhost:8080/api/users/76
+
+###
+DELETE http://localhost:8080/api/users/76
+
+###
+POST http://localhost:8080/api/users
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "New User",
+  "email": "new.user@gmail.com",
+  "active": false
+}
+###
+
+PUT http://localhost:8080/api/users/1004
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name":"CHANGED",
+  "email":"changed.user@gmail.com",
+  "active":true,
+  "id":1004
+}
+###
+
+PUT http://localhost:8080/api/users/999999
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name":"CHANGED",
+  "email":"changed.user@gmail.com",
+  "active":true,
+  "id": 999999
+}
+###

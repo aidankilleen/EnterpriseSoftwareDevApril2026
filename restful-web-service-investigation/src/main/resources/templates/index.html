@@ -12,26 +12,6 @@
 
 <h1>Home Page</h1>
 
-<p th:text="${users.size()}"/>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Active</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="user : ${users}">
-            <td th:text="${user.id}"/>
-            <td th:text="${user.name}"/>
-            <td th:text="${user.email}"/>
-            <td th:text="${user.active}"/>
-        </tr>
-    </tbody>
-</table>
 
 
 <div th:replace="~{fragments/layout :: main-scripts}"/>
