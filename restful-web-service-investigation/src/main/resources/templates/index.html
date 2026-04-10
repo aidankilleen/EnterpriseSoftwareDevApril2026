@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- we can include a thymeleaf fragment -->
+<head th:replace="~{fragments/layout :: main-header('Home Page')}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div th:replace="~{fragments/layout :: navigation('home')}"/>
+
+<h1>Home Page</h1>
+
+<p th:text="${users.size()}"/>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Active</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"/>
+            <td th:text="${user.name}"/>
+            <td th:text="${user.email}"/>
+            <td th:text="${user.active}"/>
+        </tr>
+    </tbody>
+</table>
+
+
+<div th:replace="~{fragments/layout :: main-scripts}"/>
+</body>
+</html>
