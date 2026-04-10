@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: main-header('Ajax Investigation')}"/>
+    <meta charset="UTF-8">
+    <title>AAAABBBBB</title>
+</head>
+<body>
+<div th:replace="~{fragments/layout :: navigation('ajaxinvestigation')}"/>
+<h1>Ajax Investigation</h1>
+
+<div id="message"></div>
+
+<button class="btn btn-success" onclick="getData()">Get Data</button>
+
+<table id="tblUsers" class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Active</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<div th:replace="~{fragments/layout :: main-scripts}"/>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

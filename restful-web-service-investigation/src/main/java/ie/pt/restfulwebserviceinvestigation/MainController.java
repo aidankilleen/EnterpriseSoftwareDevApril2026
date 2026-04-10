@@ -39,4 +39,10 @@ public class MainController {
         model.addAttribute("users", users);
         return "users";
     }
+
+    @GetMapping("ajaxinvestigation")
+    public String ajaxinvestigation() {
+        return "ajaxinvestigation";
+    }
+
 }
