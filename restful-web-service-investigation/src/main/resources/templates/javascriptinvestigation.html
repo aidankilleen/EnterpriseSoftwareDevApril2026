@@ -10,89 +10,91 @@
 
 <div id="content"></div>
 
+<table id="tblUsers" class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Active</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<button
+        class="btn btn-success"
+        onclick="onFetchUsers()">Fetch Users
+</button>
+<button class="btn btn-success">Add User</button>
 <div th:replace="~{fragments/layout :: main-scripts}"/>
 
+<!--
+<script src="js/investigation.js"></script>
+-->
+<!--
+<script src="js/arrowfunctioninvestigation.js"></script>
+-->
+
 <script>
+    let tbody = document.querySelector("#tblUsers tbody");
+    let url = "/api/users";
+    let allUsers = [];
 
-    // a lot of js is used for DOM Manipulation
-    // i.e. changing the content of the page:
-    let content = document.getElementById("content");
-    content.innerHTML = "<h2>Content goes here</h2>";
-    // This is a comment
-
-    /*
-    this is a multiline comment
-    */
-
-    // variables - use "let" to declare a variable
-    let name = "Aidan";
-    //var surname = "Killeen"; // don't use "var" it is obsolete
-    const firstname = "Aidan";  // const is a constant
-
-    // strings in js
-    name = "Aidan";
-    name = 'Aidan';  // single quotes and double quotes are interchangable
-
-    // create templated string using ``
-    let message = "Welcome " + name;
-    message = `Welcome ${ name }`;
-
-    // js actually doesn't care if you declare your variables or not
-    let html = "<h1>html</h1>"
-    // but I strongly recommend that we declare our variables
-    // before using them
-
-
-    message = "Press the \"red\" button";
-
-    // or use single quotes if you want " in your string
-    message = 'Press the "red" button';
-
-    // use double quotes if you want to put ' in your string
-    name = "O'Sullivan";
-
-    // use `` if we want to create a string with substituted variables
-
-    function onClick() {
-        alert("the button was clicked");
+    // read the users from the api
+    function addUserToTable(user) {
+        let html = `<tr id="tr_${user.id}">
+                                    <td>${user.id}</td>
+                                    <td>${user.name}</td>
+                                    <td>${user.email}</td>
+                                    <td>${user.active ? "Active" : "Inactive"}</td>
+                                    <td><button
+                                        class="btn btn-danger btn-sm"
+                                        onclick="deleteUser(${user.id})"
+                                        >Delete</i></button>
+                                        <button
+                                        class="btn btn-primary btn-sm"
+                                        onclick="editUser(${user.id})"
+                                        >Edit</button>
+                                        </td>
+                                   </tr>`;
+        tbody.innerHTML += html;
     }
-
-    text = "Press Me"
-    html = `<button class="btn btn-success" onclick="onClick()">${text}</button>`;
-
-
-    content.innerHTML += html;
-
-    console.log("write a message to the console");
-
-
-    // a list or array is done using []
-
-    let buttons = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"];
-
-    for (let i = 0; i < buttons.length; i++) {
-
-        content.innerHTML += `<button class="btn btn-${buttons[i]}">
-                                ${buttons[i]}
-                              </button>`;
+    function deleteUser(id) {
+        if (confirm(`Are you sure you want to delete user ${id}`)) {
+            fetch(`${url}/${id}`, {
+                method: "DELETE"
+            })
+                .then(response => {
+                    if (response.ok) {
+                        tr = document.getElementById(`tr_${id}`);
+                        tr.remove();
+                    }
+                });
+        }
     }
+    function addUsersToTable(users) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //alert(message);
-
-
+        // clear the table before adding
+        tbody.innerHTML = "";
+        users.forEach(user => addUserToTable(user));
+    }
+    function onFetchUsers() {
+        //alert("fetch users");
+        fetch(url)
+            .then(response => {
+                console.log(response);
+                return response.json();
+            })
+            .then(users => {
+                allUsers = users;
+                console.log(users);
+                addUsersToTable(users);
+            });
+    }
 </script>
+
+
+
 </body>
 </html>
