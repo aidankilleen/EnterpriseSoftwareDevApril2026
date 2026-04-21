@@ -45,4 +45,9 @@ public class MainController {
         return "ajaxinvestigation";
     }
 
+    @GetMapping("javascriptinvestigation")
+    public String javascriptinvestigation() {
+        return "javascriptinvestigation";
+    }
+
 }
