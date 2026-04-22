@@ -4,11 +4,63 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+    div {
+
+    }
+    .box {
+
+    }
+    #box1 {
+
+    }
+    [data-custom] {
+        color: red;
+    }
+    div input + span {
+        color:blue;
+    }
+    div input[checked] + span {
+        color: red;
+    }
+    #test-buttons button[disabled] {
+        border: 10px solid black;
+    }
+
+</style>
 <body>
 <div th:replace="~{fragments/layout :: navigation('javascriptinvestigation')}"/>
 <h1>JS Investigation</h1>
 
-<div id="content"></div>
+<div id="test-buttons">
+<button>Press Me</button>
+<button disabled>Disabled</button>
+</div>
+
+<div><input type="checkbox"><span>Some Text</span></div>
+
+
+<div id="content">Content</div>
+<div data-custom>Custom content</div>
+<span data-custom>This is a span</span>
+
+<button
+        class="btn btn-primary"
+        data-bs-toggle="tooltip"
+        data-bs-title="Tooltip Button Example"
+        data-bs-placement="top"
+>Tooltip Button</button>
+
+<hr>
+
+<button
+        id="btnAddUser"
+        class="btn btn-success"
+        data-bs-toggle="modal"
+        data-bs-title="Add A New User"
+        data-bs-placement="top"
+        data-bs-target="#dlgUser" title="Add User"
+><i class="bi bi-person-add"></i></button>
 
 <table id="tblUsers" class="table">
     <thead>
@@ -24,26 +76,77 @@
 
 
 
-
+<!--
 <button
         class="btn btn-success"
         onclick="onFetchUsers()">Fetch Users
 </button>
-<button class="btn btn-success">Add User</button>
+-->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="dlgUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add User</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Name:<input id="txtDlgName"><br>
+                Email:<input id="txtDlgEmail"><br>
+                Active: <input type="checkbox" id="chkDlgActive"><br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="onSaveDialog()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div th:replace="~{fragments/layout :: main-scripts}"/>
 
-<!--
-<script src="js/investigation.js"></script>
--->
-<!--
-<script src="js/arrowfunctioninvestigation.js"></script>
--->
+<script>
+
+    let tooltipElements = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipList = [...tooltipElements].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    // manually configure the tooltip on
+    btnAddUser = document.getElementById("btnAddUser");
+    tt = new bootstrap.Tooltip(btnAddUser);
+</script>
 
 <script>
     let tbody = document.querySelector("#tblUsers tbody");
     let url = "/api/users";
     let allUsers = [];
 
+    function onSaveDialog() {
+        let name = document.getElementById("txtDlgName").value;
+        let email = document.getElementById("txtDlgEmail").value;
+        let active = document.getElementById("chkDlgActive").checked;
+
+        let newUser = {
+            name: name,
+            email: email,
+            active: active
+        }
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newUser)
+        })
+        .then(response => response.json())
+        .then(user => {
+            addUserToTable(user);
+
+            let dlg = document.getElementById("dlgUser");
+            bootstrap.Modal.getInstance(dlg).hide();
+
+        });
+    }
     // read the users from the api
     function addUserToTable(user) {
         let html = `<tr id="tr_${user.id}">
@@ -55,24 +158,24 @@
                                         id="btnDelete_${user.id}"
                                         class="btn btn-danger btn-sm"
                                         onclick="deleteUser(${user.id})"
-                                        >Delete</i></button>
+                                        ><i class="bi bi-trash"></i></i></button>
                                         <button
                                         id="btnEdit_${user.id}"
                                         class="btn btn-primary btn-sm"
                                         onclick="editUser(${user.id})"
-                                        >Edit</button>
+                                        ><i class="bi bi-pencil-square"></i></button>
                                         <button
                                         id="btnSave_${user.id}"
                                         class="btn btn-success btn-sm"
                                         onclick="saveUser(${user.id})"
                                         disabled
-                                        >Save</button>
+                                        ><i class="bi bi-floppy"></i></button>
                                         <button
                                         id="btnCancel_${user.id}"
                                         class="btn btn-secondary btn-sm"
                                         onclick="cancelSaveUser(${user.id})"
                                         disabled
-                                        >Cancel</button>
+                                        ><i class="bi bi-x-circle"></i></button>
                                         </td>
                                    </tr>`;
         tbody.innerHTML += html;
@@ -186,6 +289,10 @@
                 addUsersToTable(users);
             });
     }
+
+    // initialisation code can be put at the end of the <script> tag
+    onFetchUsers();
+
 </script>
 
 
