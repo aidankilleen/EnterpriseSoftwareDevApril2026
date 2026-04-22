@@ -22,6 +22,9 @@
     <tbody></tbody>
 </table>
 
+
+
+
 <button
         class="btn btn-success"
         onclick="onFetchUsers()">Fetch Users
@@ -74,6 +77,14 @@
                                    </tr>`;
         tbody.innerHTML += html;
     }
+
+    function configureButtons(id, editing) {
+        document.getElementById(`btnDelete_${id}`).disabled = editing;
+        document.getElementById(`btnEdit_${id}`).disabled = editing;
+        document.getElementById(`btnSave_${id}`).disabled = !editing;
+        document.getElementById(`btnCancel_${id}`).disabled = !editing;
+    }
+
     function saveUser(id) {
 
         let txtName = document.getElementById(`txtName_${id}`);
@@ -98,11 +109,27 @@
                     document.querySelector(`#tr_${id} td:nth-child(2)`).innerHTML = updatedUser.name;
                     document.querySelector(`#tr_${id} td:nth-child(3)`).innerHTML = updatedUser.email;
                     document.querySelector(`#tr_${id} td:nth-child(4)`).innerHTML = updatedUser.active ? "Active" : "Inactive";
+
+                    configureButtons(id, false);
+
                 }
             });
     }
     function cancelSaveUser(id) {
-        alert("cancel");
+
+        let txtName = document.getElementById(`txtName_${id}`);
+        let originalName = txtName.getAttribute("data-original-value");
+        document.querySelector(`#tr_${id} td:nth-child(2)`).innerHTML = originalName;
+
+        let txtEmail = document.getElementById(`txtEmail_${id}`);
+        let originalEmail = txtEmail.getAttribute("data-original-value");
+        document.querySelector(`#tr_${id} td:nth-child(3)`).innerHTML = originalEmail;
+
+        let chkActive = document.getElementById(`chkActive_${id}`);
+        let originalActive = chkActive.getAttribute("data-original-value");
+        document.querySelector(`#tr_${id} td:nth-child(4)`).innerHTML = originalActive == "true" ? "Active" : "Inactive";
+
+        configureButtons(id, false);
     }
     function deleteUser(id) {
         if (confirm(`Are you sure you want to delete user ${id}`)) {
@@ -127,21 +154,23 @@
     function editUser(id) {
         let tdName = document.querySelector(`#tr_${id} td:nth-child(2)`);
         let name = tdName.innerHTML;
-        tdName.innerHTML=`<input value='${name}' id="txtName_${id}">`;
+        tdName.innerHTML=`<input value='${name}' id="txtName_${id}" data-original-value="${name}">`;
 
         let tdEmail = document.querySelector(`#tr_${id} td:nth-child(3)`);
         let email = tdEmail.innerHTML;
-        tdEmail.innerHTML=`<input value='${email}' id="txtEmail_${id}">`;
+        tdEmail.innerHTML=`<input value='${email}' id="txtEmail_${id}" data-original-value="${email}">`;
 
         let tdActive = document.querySelector(`#tr_${id} td:nth-child(4)`);
         let active = tdActive.innerHTML == "Active";
-        tdActive.innerHTML=`<input type="checkbox" ${ active ? "checked" : "" } id="chkActive_${id}">`;
+        tdActive.innerHTML=`<input type="checkbox" ${ active ? "checked" : "" } id="chkActive_${id}" data-original-value="${active}">`;
 
         // enable / disable buttons
-        document.getElementById(`btnDelete_${id}`).enabled = false;
-        document.getElementById(`btnEdit_${id}`).enabled = false;
-        document.getElementById(`btnSave_${id}`).enabled = true;
-        document.getElementById(`btnCancel_${id}`).enabled = true;
+        configureButtons(id, true);
+
+        //document.getElementById(`btnDelete_${id}`).disabled = true;
+        //document.getElementById(`btnEdit_${id}`).disabled = true;
+        //document.getElementById(`btnSave_${id}`).disabled = false;
+        //document.getElementById(`btnCancel_${id}`).disabled = false;
 
     }
     function onFetchUsers() {
