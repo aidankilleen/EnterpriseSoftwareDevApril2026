@@ -49,20 +49,26 @@
                                     <td>${user.email}</td>
                                     <td>${user.active ? "Active" : "Inactive"}</td>
                                     <td><button
+                                        id="btnDelete_${user.id}"
                                         class="btn btn-danger btn-sm"
                                         onclick="deleteUser(${user.id})"
                                         >Delete</i></button>
                                         <button
+                                        id="btnEdit_${user.id}"
                                         class="btn btn-primary btn-sm"
                                         onclick="editUser(${user.id})"
                                         >Edit</button>
                                         <button
+                                        id="btnSave_${user.id}"
                                         class="btn btn-success btn-sm"
                                         onclick="saveUser(${user.id})"
+                                        disabled
                                         >Save</button>
                                         <button
+                                        id="btnCancel_${user.id}"
                                         class="btn btn-secondary btn-sm"
                                         onclick="cancelSaveUser(${user.id})"
+                                        disabled
                                         >Cancel</button>
                                         </td>
                                    </tr>`;
@@ -71,12 +77,14 @@
     function saveUser(id) {
 
         let txtName = document.getElementById(`txtName_${id}`);
+        let txtEmail = document.getElementById(`txtEmail_${id}`);
+        let chkActive = document.getElementById(`chkActive_${id}`);
 
         let updatedUser = {
             id: id,
             name: txtName.value,
-            email: "",
-            active: true
+            email: txtEmail.value,
+            active: chkActive.checked
         }
         fetch(`${url}/${id}`, {
             method: "PUT",
@@ -87,7 +95,9 @@
         })
             .then(response=>{
                 if (response.ok) {
-                    alert(`saved ${id} ${txtName.value}`);
+                    document.querySelector(`#tr_${id} td:nth-child(2)`).innerHTML = updatedUser.name;
+                    document.querySelector(`#tr_${id} td:nth-child(3)`).innerHTML = updatedUser.email;
+                    document.querySelector(`#tr_${id} td:nth-child(4)`).innerHTML = updatedUser.active ? "Active" : "Inactive";
                 }
             });
     }
@@ -118,6 +128,21 @@
         let tdName = document.querySelector(`#tr_${id} td:nth-child(2)`);
         let name = tdName.innerHTML;
         tdName.innerHTML=`<input value='${name}' id="txtName_${id}">`;
+
+        let tdEmail = document.querySelector(`#tr_${id} td:nth-child(3)`);
+        let email = tdEmail.innerHTML;
+        tdEmail.innerHTML=`<input value='${email}' id="txtEmail_${id}">`;
+
+        let tdActive = document.querySelector(`#tr_${id} td:nth-child(4)`);
+        let active = tdActive.innerHTML == "Active";
+        tdActive.innerHTML=`<input type="checkbox" ${ active ? "checked" : "" } id="chkActive_${id}">`;
+
+        // enable / disable buttons
+        document.getElementById(`btnDelete_${id}`).enabled = false;
+        document.getElementById(`btnEdit_${id}`).enabled = false;
+        document.getElementById(`btnSave_${id}`).enabled = true;
+        document.getElementById(`btnCancel_${id}`).enabled = true;
+
     }
     function onFetchUsers() {
         //alert("fetch users");
