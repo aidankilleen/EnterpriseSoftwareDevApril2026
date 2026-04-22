@@ -50,4 +50,9 @@ public class MainController {
         return "javascriptinvestigation";
     }
 
+    @GetMapping("cssinvestigation")
+    public String cssinvestigation() {
+        return "cssinvestigation";
+    }
+
 }

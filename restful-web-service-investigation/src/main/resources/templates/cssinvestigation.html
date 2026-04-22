@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: main-header('CSS Investigation')}">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    h1 {
+        color: red;
+    }
+    div h1 {
+        color: green;
+    }
+    #message {
+        background-color: lightgray;
+    }
+    #message h1 {
+        color: white;
+    }
+
+    .box {
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+        background-color: lightcoral;
+    }
+    .box h1 {
+        color: yellow;
+    }
+    /* psudo classes - the element is in a particular state*/
+    .box:hover {
+        background-color: lightblue;
+    }
+
+    /* don't style things using a tag (in general) nav is now styled too */
+    /* use a class where possible */
+    .list li:first-child {
+        background-color: lightgreen;
+    }
+    .list li:last-child {
+        background-color: lightblue;
+    }
+    .list li:nth-child(4) {
+        background-color: lightcoral;
+    }
+
+    #warning {
+        width: 100%;
+        height: 200px;
+        background-color: orange;
+        color: white;
+    }
+    #warning:empty {
+        display: none;
+    }
+
+</style>
+
+
+<body>
+<div th:replace="~{fragments/layout :: navigation('cssinvestigation')}"/>
+<h1>CSS Investigation</h1>
+
+<button class="btn btn-primary" onclick="onClick()">Display warning</button>
+
+<div id="warning"></div>
+
+
+<ul class="list">
+    <li>One</li>
+    <li>Two</li>
+    <li>Three</li>
+    <li>Four</li>
+    <li>Five</li>
+</ul>
+<div>
+    <h1>h1 in  div</h1>
+</div>
+
+<div id="message">
+    <h1>h1 in the message</h1>
+</div>
+
+<div id="box1" class="box">
+    <h1 id="box1h1">Box 1</h1>
+</div>
+
+<div id="box2" class="box">
+    <h1 id="box2h1">Box 2</h1>
+</div>
+
+<div id="box3" class="box">
+    <h1 id="box3h1">Box 3</h1>
+</div>
+
+
+
+<div th:replace="~{fragments/layout :: main-scripts}"/>
+
+<script>
+
+    function onClick() {
+        //warningDiv = document.getElementById("warning");
+        warningDiv = document.querySelector("#warning");
+        warningDiv.innerHTML = "<h1>WARNING!!!!</h1>";
+    }
+
+    let boxes = document.querySelectorAll(".box");
+
+    boxes.forEach(box => box.addEventListener("click", (evt) => {
+        console.log(evt);
+        alert(`you clicked a box ${evt.currentTarget.id} ${evt.target.id}`);
+    }));
+
+    document.querySelector(".list li:nth-child(3)")
+            .addEventListener("click",
+                () => alert("you clicked the third item"));
+
+</script>
+</body>
+</html>
