@@ -56,9 +56,43 @@
                                         class="btn btn-primary btn-sm"
                                         onclick="editUser(${user.id})"
                                         >Edit</button>
+                                        <button
+                                        class="btn btn-success btn-sm"
+                                        onclick="saveUser(${user.id})"
+                                        >Save</button>
+                                        <button
+                                        class="btn btn-secondary btn-sm"
+                                        onclick="cancelSaveUser(${user.id})"
+                                        >Cancel</button>
                                         </td>
                                    </tr>`;
         tbody.innerHTML += html;
+    }
+    function saveUser(id) {
+
+        let txtName = document.getElementById(`txtName_${id}`);
+
+        let updatedUser = {
+            id: id,
+            name: txtName.value,
+            email: "",
+            active: true
+        }
+        fetch(`${url}/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedUser)
+        })
+            .then(response=>{
+                if (response.ok) {
+                    alert(`saved ${id} ${txtName.value}`);
+                }
+            });
+    }
+    function cancelSaveUser(id) {
+        alert("cancel");
     }
     function deleteUser(id) {
         if (confirm(`Are you sure you want to delete user ${id}`)) {
@@ -78,6 +112,12 @@
         // clear the table before adding
         tbody.innerHTML = "";
         users.forEach(user => addUserToTable(user));
+    }
+
+    function editUser(id) {
+        let tdName = document.querySelector(`#tr_${id} td:nth-child(2)`);
+        let name = tdName.innerHTML;
+        tdName.innerHTML=`<input value='${name}' id="txtName_${id}">`;
     }
     function onFetchUsers() {
         //alert("fetch users");
