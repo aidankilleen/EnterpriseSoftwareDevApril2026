@@ -56,25 +56,27 @@ function App() {
     {id:4, title:"M4", text:"This is M4"}
   ]
   
+  const onClick = () => {
+    alert("is this working?");
+  }
+
+  // note: onClick={onClick} is providing a function to be called 
+  //       onClick={onClick()} onClick() is being called as the component is being rendered
+  // it does not provide a function to be called.
   return (
     <>
-      <select>
-        { messages.map(message => (<option>{message.title}</option>))}
-      </select>
-      <hr/>
-      { messages.map(message => (
-        <>
-        <h1>{message.title}</h1>
-        <Message key={message.id} message={message}/>
-        </>
+      <h1>Event Handling</h1>
 
-      ))
-      }
-      <div>
-        {JSON.stringify(messages)}
-      </div>
+      <button onClick={onClick}>Press me</button>
+      {/*<button onClick={onClick()}>Press me</button>*/}
+      <button onClick={()=>alert("clicked")}>Press me</button>
     </>
   )
 }
 
+/*
+function onClick() {
+
+}
+*/
 export default App
