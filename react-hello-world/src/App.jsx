@@ -50,18 +50,29 @@ function App() {
   console.log(numbersCopy);
 
   const messages = [
-    {title:"M1", text:"This is M1"},
-    {title:"M2", text:"This is M2"},
-    {title:"M3", text:"This is M3"},
-    {title:"M4", text:"This is M4"}
+    {id:1, title:"M1", text:"This is M1"},
+    {id:2, title:"M2", text:"This is M2"},
+    {id:3, title:"M3", text:"This is M3"},
+    {id:4, title:"M4", text:"This is M4"}
   ]
   
   return (
     <>
+      <select>
+        { messages.map(message => (<option>{message.title}</option>))}
+      </select>
+      <hr/>
       { messages.map(message => (
-        <Message title={message.title} text={message.text}/>
+        <>
+        <h1>{message.title}</h1>
+        <Message key={message.id} message={message}/>
+        </>
+
       ))
       }
+      <div>
+        {JSON.stringify(messages)}
+      </div>
     </>
   )
 }
