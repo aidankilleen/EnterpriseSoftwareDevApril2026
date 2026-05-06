@@ -1,5 +1,6 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import './App.css'
+import MainNavigation from './components/MainNavigation'
 
 function App() {
 
@@ -8,13 +9,8 @@ function App() {
     <>
       <h2>Single Page Application Investigation</h2>
 
-      <nav>
-        <Link to="/">Home</Link> |
-        <Link to="/about">About</Link> | 
-        <Link to="/contact">Contact Us</Link> | 
-        <Link to="/effect">Effect Investigation</Link>
-        
-      </nav>
+      <MainNavigation/>
+
       <main>
         <Outlet/>
       </main>
