@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-function User ({user, setUser}) {
+function User({ user, setUser }) {
 
     const [editing, setEditing] = useState(false);
     return (
         <div>
             <button onClick={evt => setEditing(!editing)}>Edit</button>
-            { editing ? <h1>Editing</h1> : <h1>Not Editing</h1> }
+            { editing ? <h1>Editing</h1> : <h1>Not Editing</h1>}
 
 
             <table>
@@ -16,14 +16,18 @@ function User ({user, setUser}) {
                     </tr>
                     <tr>
                         <td>Name</td>
-                        <td>{ 
-                            editing 
-                            ? 
-                            <input 
-                                value={user.name} 
-                                onChange={evt=>setUser({...user, name: evt.target.value})}/> 
-                            : 
-                            user.name }</td>
+                        <td>{
+                            editing
+                                ?
+                                <input
+                                    value={user.name}
+                                    onChange={
+                                        evt => 
+                                            setUser({ ...user, name: evt.target.value })} />
+                                :
+                                user.name
+                            }
+                        </td>
                     </tr>
                     <tr>
                         <td>Email</td><td>{user.email}</td>
