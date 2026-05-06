@@ -6,13 +6,13 @@ import MainNav from './page-conmponents/MainNav'
 function App() {
 
   return (
-
-    <Container>
+    <>
+    <Container fluid>
       <h1>Bootstrap</h1>
       <MainNav/>
       <Outlet/>
     </Container>
-
+    </>
   )
 }
 

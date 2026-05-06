@@ -5,7 +5,7 @@ const MainNav = () => {
 
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
-            <Container>
+
                 <Navbar.Brand as={Link} to="/">
                 MyApp
                 </Navbar.Brand>
@@ -25,9 +25,13 @@ const MainNav = () => {
                     <Nav.Link as={Link} to="/contact">
                     Contact
                     </Nav.Link>
+
+                    <Nav.Link as={Link} to="/users">
+                    Users
+                    </Nav.Link>
                 </Nav>
                 </Navbar.Collapse>
-            </Container>
+
         </Navbar>
     )
 }
