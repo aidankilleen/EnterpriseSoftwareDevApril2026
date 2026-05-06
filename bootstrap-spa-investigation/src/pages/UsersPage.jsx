@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Form, Modal, Spinner } from "react-bootstrap";
+import { Alert, Button, Form, Modal, Spinner } from "react-bootstrap";
 
 const UsersPage = () => {
 
@@ -13,6 +13,8 @@ const UsersPage = () => {
         email: "", 
         active: false
     });
+    const [error, setError] = useState("");
+    const [reload, setReload] = useState(false);
 
     const url = "https://api.acodingtutor.com/users?_delay=1000";
     useEffect(() => {
@@ -21,9 +23,11 @@ const UsersPage = () => {
             .then(data => {
                 setUsers(data);
                 setLoading(false);
-            })
-
-    }, []);
+                setError("");
+            }).catch(err => {
+                setError(err);
+            });
+    }, [reload]);
 
     const onHideDialog = () => {
         setShowDialog(false);
@@ -49,6 +53,15 @@ const UsersPage = () => {
         });
     }
 
+    if (error != "") {
+        return (
+            <>
+                <Alert variant="danger">{ error.message }</Alert>
+
+                <Button onClick={evt => setReload(current => !current)}>Reload</Button>
+            </>
+        )
+    }
     if (loading) {
         return (
             <Spinner/>
